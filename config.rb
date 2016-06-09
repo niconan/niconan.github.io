@@ -19,9 +19,7 @@ page '/*.txt', layout: false
 # General configuration
 
 # Reload the browser automatically whenever files change
-configure :development do
-  activate :livereload
-end
+activate :livereload
 
 ###
 # Helpers
@@ -34,6 +32,13 @@ end
 #   end
 # end
 
+set :css_dir, 'stylesheets'
+set :js_dir, 'javascripts'
+set :images_dir, 'images'
+
+set :markdown, :fenced_code_blocks => true, :smartypants => true
+
+
 # Build-specific configuration
 configure :build do
   # Minify CSS on build
@@ -41,4 +46,11 @@ configure :build do
 
   # Minify Javascript on build
   # activate :minify_javascript
+end
+
+activate :deploy do |deploy|
+  deploy.build_before = true
+  deploy.method       = :git
+  deploy.remote       = 'origin'
+  deploy.branch       = 'master'
 end
