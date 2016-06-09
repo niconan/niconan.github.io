@@ -1,18 +1,10 @@
 ---
-title: 栗林健太郎の紹介
-sub_title: ソフトウェアエンジニア
+title: test
+sub_title: test
 ---
 
 ----
 
-# 栗林 健太郎(くりばやし けんたろう)
-
-<div style="float:right; margin-left: 10px">
-  <img src="http://pbs.twimg.com/profile_images/606295971656429568/UCf20-sO.jpg" width="100px" height="100px" style="border: solid 1px #666" />
-</div>
-
-大学では法学部政治学科において日本政治史および行政学を専攻。卒業後、市役所勤務を経て、2008年よりソフトウェアエンジニアに転じ、Webサービス企業2社において開発者、マネジャーとして従事。
-
-ソフトウェアエンジニアとして、大規模Webサービスを迅速に開発できる技術・開発プロセス、安定して運用できるアーキテクチャに興味を持つ。また、近年では技術マネジメントの担い手として、経営課題の技術的解決に関心を持っている。
+# nicolas montanaro
 
 ----
