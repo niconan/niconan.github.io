@@ -49,8 +49,8 @@ configure :build do
 end
 
 activate :deploy do |deploy|
-  deploy.build_before = true
-  deploy.method       = :git
-  deploy.remote       = 'origin'
-  deploy.branch       = 'master'
+  deploy.build_before   = true
+  deploy.deploy_method  = :git
+  deploy.remote         = 'origin'
+  deploy.branch         = 'master'
 end

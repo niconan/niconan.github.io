@@ -1,67 +1,61 @@
-@charset "utf-8";
-@import "normalize";
+@import 'bootstrap';
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+@import url(http://fonts.googleapis.com/css?family=Orienta);
 
-body {
-  background: #ECC561;
-  text-align: center;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1em;
+@mixin container {
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
 }
 
-.logo img {
-  height: 18.75em;
-  margin-top: 6em;
+@mixin heading {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  @include container;
+}
+
+.title {
+  @include heading;
+  font-size: 300%;
+}
+
+.sub-title {
+  font-size: 150%;
+  color: #666;
 }
 
 h1 {
-  color: rgba(0,0,0,0.5);
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.8em;
-  font-weight: 400;
-  margin: 0;
+  @include heading;
+  font-size: 200%;
 }
 
-.doc {
-  margin: 3em 0;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-
-  a {
-    border: 1px solid white;
-    border-radius: 3px;
-    padding: 0.75em 0.7em;
-    color: white;
-    text-decoration: none;
-    transition: color 0.1s linear;
-    &:hover {
-      background: rgba(0,0,0,0.2);
-      color: white;
-      transition: all 0.15s linear;
-    }
-  }
+h2 {
+  @include heading;
+  font-size: 150%;
 }
 
-.welcome {
-  -webkit-animation-name: welcome;
-  -webkit-animation-duration: .9s;
+h3 {
+  @include heading;
+  font-size: 150%;
 }
 
-@-webkit-keyframes welcome {
-  from {
-    -webkit-transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-   -webkit-transform: scale(0);
-   opacity: 0;
-  }
-  82.5% {
-    -webkit-transform: scale(1.03);
-    -webkit-animation-timing-function: ease-out;
-    opacity: 1;
-  }
-  to {
-    -webkit-transform: scale(1);
-  }
+.header {
+  @include container;
+}
+
+.body {
+  @include container;
+  font-family: 'Orienta', sans-serif;
+  line-height: 1.7em;
+}
+
+.footer {
+  @include container;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
