@@ -29,16 +29,14 @@ I’m currently working for mySpiderweb, a startup based out of Rochester, NY.
 
 # Work history
 
-**Full stack developer**
-
+**Full stack developer**  
 mySpiderweb, Rochester, NY (remote)
 
 * mySpiderweb is a social media publishing tool that streamlines a multi-network presence for small businesses.
 * Currently a member of a small team developing the application for use with Facebook, LinkedIn, and Twitter integration. The stack currently includes Meteor, HTML, CSS3, JavaScript, and MongoDB.
 
 
-**Software application engineer**
-
+**Software application engineer**  
 Intel, Santa Clara, CA
 
 * Analyzed the performance of 3D camera hardware & software on Intel architecture prior to release.
@@ -46,16 +44,14 @@ Intel, Santa Clara, CA
 * Identified and resolved proprietary software issues which resulted in the on-time delivery of a performance monitoring tool to Intel labs.
 
 
-**Computer science lab student lab instructor**
-
+**Computer science lab student lab instructor**  
 Rochester Institute of Technology
 
 * Assisted faculty in the delivery and grading of weekly, programming-based laboratories for an introductory Computer Science course.
 * Tutored individual students in introductory Computer Science courses on a biweekly basis.
 
 
-**Computer science ambassador**
-
+**Computer science ambassador**  
 Rochester Institute of Technology
 
 * Served as a representative of the computer science program to potential new students by running informational seminars and tours.
@@ -65,24 +61,21 @@ Rochester Institute of Technology
 
 # Projects
 
-## [Kohaku](https://github.com/nicoNaN/kohaku)
-
+## [Kohaku](https://github.com/nicoNaN/kohaku)  
 **Technologies used**: Ruby, faraday, http
 
 * Kohaku is an automated image tagging program written in Ruby using the Imagga API.
 * Primarily targeted towards individuals who store a lot of pictures locally, such as imageboard users.
 
 
-## [Recipe Book](https://github.com/nicoNaN/recipe-book)
-
+## [Recipe Book](https://github.com/nicoNaN/recipe-book)  
 **Technologies used**: Ruby, Rails, bootstrap, html5, css3, sass, angular.js
 
 * Web application that allows users to scrape recipes from popular recipe websites and store them in a personal recipe book.
 * Users may take notes on recipes, generate printable PDFs of recipes, follow other users, share recipes with other users, and view user activity in a feed.
 
 
-**[August & Alice: A Love Story](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)**
-
+## [August & Alice: A Love Story](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)  
 **Technologies used**: LÖVE framework, lua, photoshop
 
 From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-deep-feels/):
@@ -96,12 +89,10 @@ From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-d
 
 # Activities
 
-**Student at Viking Code School**
-
+## Student at Viking Code School  
 * Completed an intensive 16 week full-stack development boot camp.
 * Focused on Ruby + Rails, included JS, Angular, Sinatra, HTML5/CSS3, Sass, and numerous other DSLs, frameworks, and tools.
 
-**Vice President of Phi Kappa Psi, New York Theta chapter**
-
+## Vice President of Phi Kappa Psi, New York Theta chapter  
 * Managed the day-to-day operations and long-term goals of over 17 varied committees within a chapter of 60 members.
 * Maintained, created, and edited all internal governing documents related to the fraternity.
