@@ -73,7 +73,7 @@ Rochester Institute of Technology
 <br />
 
 #### [Kohaku](https://github.com/nicoNaN/kohaku)  
-**Technologies used**: Ruby, faraday, http
+**Technologies used**: Ruby, Faraday
 
 * Kohaku is an automated image tagging program written in Ruby using the Imagga API.
 * Primarily targeted towards individuals who store a lot of pictures locally, such as imageboard users.
@@ -81,7 +81,7 @@ Rochester Institute of Technology
 <br />
 
 #### [Recipe Book](https://github.com/nicoNaN/recipe-book)  
-**Technologies used**: Ruby, Rails, bootstrap, html5, css3, sass, angular.js
+**Technologies used**: Ruby, Rails, Bootstrap, HTML5, CSS3, SASS, Angular.js
 
 * Web application that allows users to scrape recipes from popular recipe websites and store them in a personal recipe book.
 * Users may take notes on recipes, generate printable PDFs of recipes, follow other users, share recipes with other users, and view user activity in a feed.
@@ -89,7 +89,7 @@ Rochester Institute of Technology
 <br />
 
 #### [August & Alice: A Love Story](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)  
-**Technologies used**: LÖVE framework, lua, photoshop
+**Technologies used**: LÖVE framework, Lua, Photoshop
 
 From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-deep-feels/):
 
