@@ -35,6 +35,7 @@ mySpiderweb, Rochester, NY (remote)
 * mySpiderweb is a social media publishing tool that streamlines a multi-network presence for small businesses.
 * Currently a member of a small team developing the application for use with Facebook, LinkedIn, and Twitter integration. The stack currently includes Meteor, HTML, CSS3, JavaScript, and MongoDB.
 
+<br />
 
 **Software application engineer**  
 Intel, Santa Clara, CA
@@ -43,6 +44,7 @@ Intel, Santa Clara, CA
 * Developed and tested mobile performance analysis tools for Android, iOS, and Windows-based tablets for Intel lab personnel.
 * Identified and resolved proprietary software issues which resulted in the on-time delivery of a performance monitoring tool to Intel labs.
 
+<br />
 
 **Computer science lab student lab instructor**  
 Rochester Institute of Technology
@@ -50,6 +52,7 @@ Rochester Institute of Technology
 * Assisted faculty in the delivery and grading of weekly, programming-based laboratories for an introductory Computer Science course.
 * Tutored individual students in introductory Computer Science courses on a biweekly basis.
 
+<br />
 
 **Computer science ambassador**  
 Rochester Institute of Technology
