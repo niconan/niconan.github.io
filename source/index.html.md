@@ -22,6 +22,7 @@ I’m currently working for mySpiderweb, a startup based out of Rochester, NY.
 # Contact information
 
 * Professional/recruiter inquiries: hello [at] nicolas.moe
+
 * Personal: nick.hax [at] gmail.com
 ----
 
@@ -60,19 +61,22 @@ Rochester Institute of Technology
 
 # Projects
 
-**[Kohaku] (https://github.com/nicoNaN/kohaku)**
+**[Kohaku](https://github.com/nicoNaN/kohaku)**
+
 Ruby, faraday, http
 
 * Kohaku is an automated image tagging program written in Ruby using the Imagga API.
 * Primarily targeted towards individuals who store a lot of pictures locally, such as imageboard users.
 
-**[Recipe Book] (https://github.com/nicoNaN/recipe-book)**
+**[Recipe Book](https://github.com/nicoNaN/recipe-book)**
+
 Ruby, Rails, bootstrap, html5, css3, sass, angular.js
 
 * Web application that allows users to scrape recipes from popular recipe websites and store them in a personal recipe book.
 * Users may take notes on recipes, generate printable PDFs of recipes, follow other users, share recipes with other users, and view user activity in a feed.
 
-**[August & Alice: A Love Story] (http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)**
+**[August & Alice: A Love Story](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)**
+
 LÖVE framework, lua, photoshop
 
 From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-deep-feels/):
