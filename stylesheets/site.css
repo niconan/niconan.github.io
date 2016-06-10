@@ -5856,3 +5856,6 @@ h3 {
 img {
   max-width: 100%;
   height: auto; }
+
+blockquote {
+  font-size: 75%; }
