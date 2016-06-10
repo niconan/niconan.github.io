@@ -70,6 +70,7 @@ Rochester Institute of Technology
 * Kohaku is an automated image tagging program written in Ruby using the Imagga API.
 * Primarily targeted towards individuals who store a lot of pictures locally, such as imageboard users.
 
+<br />
 
 ## [Recipe Book](https://github.com/nicoNaN/recipe-book)  
 **Technologies used**: Ruby, Rails, bootstrap, html5, css3, sass, angular.js
@@ -77,6 +78,7 @@ Rochester Institute of Technology
 * Web application that allows users to scrape recipes from popular recipe websites and store them in a personal recipe book.
 * Users may take notes on recipes, generate printable PDFs of recipes, follow other users, share recipes with other users, and view user activity in a feed.
 
+<br />
 
 ## [August & Alice: A Love Story](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)  
 **Technologies used**: LÖVE framework, lua, photoshop
@@ -95,6 +97,8 @@ From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-d
 ## Student at Viking Code School  
 * Completed an intensive 16 week full-stack development boot camp.
 * Focused on Ruby + Rails, included JS, Angular, Sinatra, HTML5/CSS3, Sass, and numerous other DSLs, frameworks, and tools.
+
+<br />
 
 ## Vice President of Phi Kappa Psi, New York Theta chapter  
 * Managed the day-to-day operations and long-term goals of over 17 varied committees within a chapter of 60 members.
