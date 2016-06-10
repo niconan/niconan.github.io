@@ -16,6 +16,7 @@ Currently pursing a B.S. in computer science at the Rochester Institute of Techn
 After a year and a half of formal instruction in computer science I began working at Intel in California. While there I attended Viking Code School to up my programming abilities, and completed a couple side projects.
 
 I'm currently working for mySpiderweb, a startup based out of Rochester, NY.
+
 ----
 # Contact information
 
@@ -26,12 +27,14 @@ I'm currently working for mySpiderweb, a startup based out of Rochester, NY.
 # Work history
 
 **Full stack developer**
+
 mySpiderweb, Rochester, NY (remote)
 
 * mySpiderweb is a social media publishing tool that streamlines a multi-network presence for small businesses.
 * Currently a member of a small team developing the application for use with Facebook, LinkedIn, and Twitter integration. The stack currently includes Meteor, HTML, CSS3, JavaScript, and MongoDB.
 
 **Software application engineer**
+
 Intel, Santa Clara, CA
 
 * Click to edit position descriptionAnalyzed the performance of 3D camera hardware & software on Intel architecture prior to release.
@@ -39,12 +42,14 @@ Intel, Santa Clara, CA
 * Identified and resolved proprietary software issues which resulted in the on-time delivery of a performance monitoring tool to Intel labs.
 
 **Computer science lab student lab instructor**
+
 Rochester Institute of Technology
 
 * Assisted faculty in the delivery and grading of weekly, programming-based laboratories for an introductory Computer Science course.
 * Tutored individual students in introductory Computer Science courses on a biweekly basis.
 
 **Computer science ambassador**
+
 Rochester Institute of Technology
 
 * Served as a representative of the computer science program to potential new students by running informational seminars and tours.
