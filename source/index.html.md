@@ -15,7 +15,6 @@ Currently pursing a B.S. in computer science at the Rochester Institute of Techn
 
 After a year and a half of formal instruction in computer science I began working at Intel in California. While there I attended Viking Code School to up my programming abilities, and completed a couple side projects.
 
-I'm currently working for mySpiderweb, a startup based out of Rochester, NY.
 
 ----
 # Contact information
