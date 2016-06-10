@@ -29,16 +29,20 @@ I’m currently working for mySpiderweb, a startup based out of Rochester, NY.
 
 # Work history
 
-**Full stack developer**  
-mySpiderweb, Rochester, NY (remote)
+<br />
+
+#### Full stack developer  
+mySpiderweb, Rochester, NY (remote)  
+*May 2016 - present*
 
 * mySpiderweb is a social media publishing tool that streamlines a multi-network presence for small businesses.
 * Currently a member of a small team developing the application for use with Facebook, LinkedIn, and Twitter integration. The stack currently includes Meteor, HTML, CSS3, JavaScript, and MongoDB.
 
 <br />
 
-**Software application engineer**  
-Intel, Santa Clara, CA
+#### Software application engineer  
+Intel, Santa Clara, CA  
+*January 2016 - 2016*
 
 * Analyzed the performance of 3D camera hardware & software on Intel architecture prior to release.
 * Developed and tested mobile performance analysis tools for Android, iOS, and Windows-based tablets for Intel lab personnel.
@@ -46,16 +50,18 @@ Intel, Santa Clara, CA
 
 <br />
 
-**Computer science lab student lab instructor**  
-Rochester Institute of Technology
+#### Computer science lab student lab instructor  
+Rochester Institute of Technology  
+*August 2014 - January 2015*
 
 * Assisted faculty in the delivery and grading of weekly, programming-based laboratories for an introductory Computer Science course.
 * Tutored individual students in introductory Computer Science courses on a biweekly basis.
 
 <br />
 
-**Computer science ambassador**  
-Rochester Institute of Technology
+#### Computer science ambassador  
+Rochester Institute of Technology  
+*March 2014 - January 2015*
 
 * Served as a representative of the computer science program to potential new students by running informational seminars and tours.
 * Interviewed potential professors with RIT faculty when potential professors sought employment.
@@ -64,7 +70,9 @@ Rochester Institute of Technology
 
 # Projects
 
-## [Kohaku](https://github.com/nicoNaN/kohaku)  
+<br />
+
+#### [Kohaku](https://github.com/nicoNaN/kohaku)  
 **Technologies used**: Ruby, faraday, http
 
 * Kohaku is an automated image tagging program written in Ruby using the Imagga API.
@@ -72,7 +80,7 @@ Rochester Institute of Technology
 
 <br />
 
-## [Recipe Book](https://github.com/nicoNaN/recipe-book)  
+#### [Recipe Book](https://github.com/nicoNaN/recipe-book)  
 **Technologies used**: Ruby, Rails, bootstrap, html5, css3, sass, angular.js
 
 * Web application that allows users to scrape recipes from popular recipe websites and store them in a personal recipe book.
@@ -80,7 +88,7 @@ Rochester Institute of Technology
 
 <br />
 
-## [August & Alice: A Love Story](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)  
+#### [August & Alice: A Love Story](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)  
 **Technologies used**: LÖVE framework, lua, photoshop
 
 From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-deep-feels/):
@@ -94,12 +102,20 @@ From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-d
 
 # Activities
 
-## Student at Viking Code School  
+<br />
+
+#### Student at Viking Code School  
+*February 2015 - August 2015*
+
 * Completed an intensive 16 week full-stack development boot camp.
 * Focused on Ruby + Rails, included JS, Angular, Sinatra, HTML5/CSS3, Sass, and numerous other DSLs, frameworks, and tools.
 
 <br />
 
-## Vice President of Phi Kappa Psi, New York Theta chapter  
+#### Vice President of Phi Kappa Psi, New York Theta chapter  
+*February 2014 - January 2015*
+
 * Managed the day-to-day operations and long-term goals of over 17 varied committees within a chapter of 60 members.
 * Maintained, created, and edited all internal governing documents related to the fraternity.
+
+<br />
