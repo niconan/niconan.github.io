@@ -40,7 +40,7 @@ mySpiderweb, Rochester, NY (remote)
 
 Intel, Santa Clara, CA
 
-* Click to edit position descriptionAnalyzed the performance of 3D camera hardware & software on Intel architecture prior to release.
+* Analyzed the performance of 3D camera hardware & software on Intel architecture prior to release.
 * Developed and tested mobile performance analysis tools for Android, iOS, and Windows-based tablets for Intel lab personnel.
 * Identified and resolved proprietary software issues which resulted in the on-time delivery of a performance monitoring tool to Intel labs.
 
