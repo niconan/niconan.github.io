@@ -22,8 +22,6 @@ I’m currently working for mySpiderweb, a startup based out of Rochester, NY.
 # Contact information
 
 * Professional/recruiter inquiries: hello [at] nicolas.moe
-
-* Personal: nick.hax [at] gmail.com
 ----
 
 # Work history
@@ -80,7 +78,7 @@ Ruby, Rails, bootstrap, html5, css3, sass, angular.js
 LÖVE framework, lua, photoshop
 
 From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-deep-feels/):
-> Alice & August, by nic, is something like Dear Esther in its design. We are given a series of rooms to wander between, with each one bringing us a little closer to understanding our relationship to the absent other. Another very interesting choice is the lack of animation: the avatar is a still sprite, sliding through a maze. At times, however, we have to cross a long, featureless hallway and without animation to give us a sense of the passage of time we become anxious. Our anxiety — as to whether time is passing in a meaningful way at all, or whether the game has crashed — mirrors the protagonist’s anxiety after their own life spiraled out of control.
+>Alice & August, by nic, is something like Dear Esther in its design. We are given a series of rooms to wander between, with each one bringing us a little closer to understanding our relationship to the absent other. Another very interesting choice is the lack of animation: the avatar is a still sprite, sliding through a maze. At times, however, we have to cross a long, featureless hallway and without animation to give us a sense of the passage of time we become anxious. Our anxiety — as to whether time is passing in a meaningful way at all, or whether the game has crashed — mirrors the protagonist’s anxiety after their own life spiraled out of control.
 
 * Game created entirely from scratch in under 48 hours for the Ludum Dare 33 game jam.
 * Made with no prior knowledge of Lua or the LÖVE framework.
