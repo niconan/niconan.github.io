@@ -5,7 +5,7 @@ sub_title: Aspiring software craftsman
 
 ----
 
-# Nicolas Montanaro
+# About
 
 <div style="float:right; margin-left: 10px">
   <img src="images/nobeard.png" width="100px" height="100px" style="border: solid 1px #666" />
@@ -21,9 +21,9 @@ I’m currently working for mySpiderweb, a startup based out of Rochester, NY.
 
 # Contact information
 
-* Professional/recruiter inquiries: hello [at] nicolas.moe
+* **Professional/recruiter inquiries**: hello [at] nicolas.moe
 
-* Personal: nick.hax [at] gmail.com
+* **Personal**: nick.hax [at] gmail.com
 
 ----
 
@@ -36,6 +36,7 @@ mySpiderweb, Rochester, NY (remote)
 * mySpiderweb is a social media publishing tool that streamlines a multi-network presence for small businesses.
 * Currently a member of a small team developing the application for use with Facebook, LinkedIn, and Twitter integration. The stack currently includes Meteor, HTML, CSS3, JavaScript, and MongoDB.
 
+
 **Software application engineer**
 
 Intel, Santa Clara, CA
@@ -44,12 +45,14 @@ Intel, Santa Clara, CA
 * Developed and tested mobile performance analysis tools for Android, iOS, and Windows-based tablets for Intel lab personnel.
 * Identified and resolved proprietary software issues which resulted in the on-time delivery of a performance monitoring tool to Intel labs.
 
+
 **Computer science lab student lab instructor**
 
 Rochester Institute of Technology
 
 * Assisted faculty in the delivery and grading of weekly, programming-based laboratories for an introductory Computer Science course.
 * Tutored individual students in introductory Computer Science courses on a biweekly basis.
+
 
 **Computer science ambassador**
 
@@ -62,23 +65,25 @@ Rochester Institute of Technology
 
 # Projects
 
-**[Kohaku](https://github.com/nicoNaN/kohaku)**
+## [Kohaku](https://github.com/nicoNaN/kohaku)
 
-Ruby, faraday, http
+**Technologies used**: Ruby, faraday, http
 
 * Kohaku is an automated image tagging program written in Ruby using the Imagga API.
 * Primarily targeted towards individuals who store a lot of pictures locally, such as imageboard users.
 
-**[Recipe Book](https://github.com/nicoNaN/recipe-book)**
 
-Ruby, Rails, bootstrap, html5, css3, sass, angular.js
+## [Recipe Book](https://github.com/nicoNaN/recipe-book)
+
+**Technologies used**: Ruby, Rails, bootstrap, html5, css3, sass, angular.js
 
 * Web application that allows users to scrape recipes from popular recipe websites and store them in a personal recipe book.
 * Users may take notes on recipes, generate printable PDFs of recipes, follow other users, share recipes with other users, and view user activity in a feed.
 
+
 **[August & Alice: A Love Story](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=56966)**
 
-LÖVE framework, lua, photoshop
+**Technologies used**: LÖVE framework, lua, photoshop
 
 From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-deep-feels/):
 
