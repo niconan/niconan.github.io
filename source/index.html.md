@@ -18,6 +18,7 @@ After a year and a half of formal instruction in computer science I began workin
 I’m currently working for mySpiderweb, a startup based out of Rochester, NY.
 
 ----
+
 # Contact information
 
 * Professional/recruiter inquiries: hello [at] nicolas.moe
