@@ -13,7 +13,7 @@ sub_title: Aspiring software craftsman
 
 Currently pursing a B.S. in computer science at the Rochester Institute of Technology. Starting off a freshman studying finance, I found I much preferred spending my time trying to understand Super Nintendo game programming than stock numbers.
 
-After a year and a half of formal instruction in computer science I began working at Intel in California. While there I attended Viking Code School to up my programming abilities, and completed a couple side projects.
+After a year and a half of formal instruction in computer science I began working at Intel in California. While there I attended Viking Code School to up my programming abilities, and completed a couple of side projects.
 
 I’m currently working for mySpiderweb, a startup based out of Rochester, NY.
 
@@ -31,6 +31,10 @@ I’m currently working for mySpiderweb, a startup based out of Rochester, NY.
 
 <br />
 
+<div style="float:right; margin-left: 10px">
+  <img src="images/msw.png" width="100px" height="100px" />
+</div>
+
 #### Full stack developer  
 mySpiderweb, Rochester, NY (remote)  
 *May 2016 - present*
@@ -39,6 +43,11 @@ mySpiderweb, Rochester, NY (remote)
 * Currently a member of a small team developing the application for use with Facebook, LinkedIn, and Twitter integration. The stack currently includes Meteor, HTML, CSS3, JavaScript, and MongoDB.
 
 <br />
+
+
+<div style="float:right; margin-left: 10px">
+  <img src="images/intel.png" width="100px" height="100px" />
+</div>
 
 #### Software application engineer  
 Intel, Santa Clara, CA  
@@ -50,6 +59,10 @@ Intel, Santa Clara, CA
 
 <br />
 
+<div style="float:right; margin-left: 10px">
+  <img src="images/rit.gif" width="100px" height="100px" />
+</div>
+
 #### Computer science lab student lab instructor  
 Rochester Institute of Technology  
 *August 2014 - January 2015*
@@ -58,6 +71,10 @@ Rochester Institute of Technology
 * Tutored individual students in introductory Computer Science courses on a biweekly basis.
 
 <br />
+
+<div style="float:right; margin-left: 10px">
+  <img src="images/rit.gif" width="100px" height="100px" />
+</div>
 
 #### Computer science ambassador  
 Rochester Institute of Technology  
@@ -104,7 +121,11 @@ From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-d
 
 <br />
 
-#### Student at Viking Code School  
+<div style="float:right; margin-left: 10px">
+  <img src="images/viking.png" width="150px" height="100px" />
+</div>
+
+#### Student at [Viking Code School](https://www.vikingcodeschool.com)  
 *February 2015 - August 2015*
 
 * Completed an intensive 16 week full-stack development boot camp.
@@ -112,7 +133,11 @@ From a user [review](http://ludumdare.com/compo/2015/09/13/my-top-three-part-2-d
 
 <br />
 
-#### Vice President of Phi Kappa Psi, New York Theta chapter  
+<div style="float:right; margin-left: 10px">
+  <img src="images/pkp.png" width="100px" height="100px" />
+</div>
+
+#### Vice President of [Phi Kappa Psi, New York Theta chapter](http://ritphipsi.org)  
 *February 2014 - January 2015*
 
 * Managed the day-to-day operations and long-term goals of over 17 varied committees within a chapter of 60 members.
