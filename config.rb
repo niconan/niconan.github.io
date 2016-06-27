@@ -46,7 +46,6 @@ configure :build do
 
   # Minify Javascript on build
   # activate :minify_javascript
-  set :base_url, 'https://nicolas.moe'
 end
 
 activate :deploy do |deploy|
