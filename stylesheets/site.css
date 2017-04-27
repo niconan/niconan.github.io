@@ -6,7 +6,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
-@import url(https://fonts.googleapis.com/css?family=Orienta);
+@import url(https://fonts.googleapis.com/css?family=Lora);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5842,7 +5842,7 @@ h3 {
   margin: 0;
   padding: 0;
   padding-top: 10px;
-  font-family: 'Orienta', sans-serif;
+  font-family: 'Lora', serif;
   line-height: 1.7em; }
 
 .footer {
