@@ -6,7 +6,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
-@import url(https://fonts.googleapis.com/css?family=Lora);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5842,7 +5842,8 @@ h3 {
   margin: 0;
   padding: 0;
   padding-top: 10px;
-  font-family: 'Lora', serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 110%;
   line-height: 1.7em; }
 
 .footer {
