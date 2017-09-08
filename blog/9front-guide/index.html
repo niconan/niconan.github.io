@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>9front-guide</title>
+
+<link rel="stylesheet" type="text/css" href="../../css/sane.css">
+
+</head>
+
+<body>
+
+<h1 id="toc_0">⑨ 9front guide</h1>
+
+<p><em>Based on <code>9front-5966.df2c352ae695</code></em></p>
+
+<p>This is a collection of notes on how to complete tasks I&#39;ve found myself commonly performing while using 9front.</p>
+
+<p>Note that most of what is here is straight from various parts of the <a href="http://fqa.9front.org">9front FQA</a>, just ordered differently. If not from the FQA, I&#39;ll provide the source under the header for the section.</p>
+
+<p>As I&#39;m in the process of learning Plan 9/9front, feel free to comment with suggestions or corrections.</p>
+
+<h2 id="toc_1">Building &amp; installing amd64 kernel on 9front</h2>
+
+<div><pre><code class="language-none">% cd /
+% rc /sys/lib/rootstub
+% cd /sys/src
+% objtype=amd64 mk install
+% cd /sys/src/9/pc64
+% mk install</code></pre></div>
+
+<p>Now the amd64 kernel has been built. Before copying it to 9bootfat so we can boot from it, do</p>
+
+<div><pre><code class="language-none">% 9fs 9fat
+% rm /n/9fat/9bootfat
+% cp /386/9bootfat /n/9fat/ # I think bootloader is 386 only, so do this even when installing amd64
+% chmod +al /n/9fat/9bootfat # defrag magic</code></pre></div>
+
+<p>Next, copy the kernel</p>
+
+<div><pre><code class="language-none">% cp /amd64/9pc64 /n/9fat/</code></pre></div>
+
+<p>Finally, edit the <code>bootfile</code> variable in <code>/n/9fat/plan9.ini</code> to use the <code>9pc64</code> kernel: <code>bootfile=9pc64</code></p>
+
+<p>Reboot.</p>
+
+<h2 id="toc_2">cpu/auth server setup</h2>
+
+<p>Following these steps sets up a machine with 9front installed as a cpu AND auth server. I don&#39;t cover fileserver configuration since I&#39;ve just been logging in as <code>glenda</code>, but it is covered in <a href="http://fqa.9front.org/fqa7.html#7.3">FQA 7.3</a>.</p>
+
+<p>For those of us coming from the *nix world... setting up a machine running 9front as a cpu &amp; auth server will allow you to remote into it using <code>drawterm</code> (covered later) and have access to the <code>rio</code> GUI. Similar to X11 forwarding using <code>ssh -X</code>. I don&#39;t currently know the nitty-gritty of how it works, but remote access was something I wanted to set up right away.</p>
+
+<p><img src="../../images/blog/9front-guide/9f.png" width="650"></p>
+
+<p><em><code>drawterm</code> in X11 on macOS</em></p>
+
+<h3 id="toc_3">Listen for remote connections (cpu server)</h3>
+
+<p>First, add the line <code>service=cpu</code> to <code>/n/9fat/plan9.ini</code>. This defines the <code>service</code> variable during the boot process so the <code>cpu</code> kernel is booted</p>
+
+<p>Reboot with <code>fshalt -r</code>.</p>
+
+<p>Upon rebooting, you&#39;ll get something along the lines of the following</p>
+
+<div><pre><code class="language-none">bad nvram key
+bad authentication id
+bad authentication domain   # You may not see these errors.
+authid: &lt;glenda&gt;
+authdom: &lt;9front&gt;
+secstore key:
+password: [glenda’s password]</code></pre></div>
+
+<p>Enter <code>glenda</code> for <code>authid</code>, <code>9front</code> (or anything you want) for <code>authdom</code>, hit return for <code>secstore</code> key, and enter a password.</p>
+
+<p>Now you&#39;ll be in an <code>rc</code> shell only, no <code>rio</code> GUI. You can run <code>rio -i riostart</code> if you prefer to make the rest of the changes using <code>acme</code>, <code>sam</code> etc., but I tend to just use <code>ed</code> to make the edits via the command line.</p>
+
+<p><strong>If you installed the <code>cwfs</code> filesystem instead of <code>hjfs</code></strong>, reboot with <code>fshalt -r</code>. When prompted for <code>bootargs</code> during boot, enter <code>local!/dev/sdXX/fscache -c</code>, where <code>XX</code> corresponds to whatever your drive identifier is. Then type <code>noauth</code> twice, followed by <code>end</code>:</p>
+
+<div><pre><code class="language-none">config: noauth
+auth is now disabled
+config: noauth
+auth is now enabled
+config: end</code></pre></div>
+
+<p>Finally, <code>9fs 9fat</code> and edit <code>/n/9fat/plan9.ini</code>. Change the <code>bootargs</code> variable to one of the following.</p>
+
+<p>For <code>cwfs</code></p>
+
+<div><pre><code class="language-none">bootargs=local!/dev/sdXX/fscache -a tcp!*!564</code></pre></div>
+
+<p>For <code>hjfs</code></p>
+
+<div><pre><code class="language-none">bootargs=local!/dev/sdXX/fs -m 702 -A -a tcp!*!564</code></pre></div>
+
+<p><strong>Note</strong>: <code>702</code> will probably be a different value on your install, just don&#39;t change the value from what it was by default.</p>
+
+<p>Reboot with <code>fshalt -r</code>. We&#39;re now listening for connections.</p>
+
+<h3 id="toc_4">Authorize remote connections (auth server)</h3>
+
+<p>All we need to do for this is edit the file <code>/lib/ndb/local</code>, but this was a bit tricky for me at first. The contents of this file on a fresh install of <code>9front-5966.df2c352ae695</code> are</p>
+
+<div><pre><code class="language-none">#
+#  files comprising the data,base, use as many as you like, see ndb(6)
+#
+database=
+  file=/net/ndb
+  file=/lib/ndb/local
+  file=/lib/ndb/common
+
+#
+# entries defining the dns root. these will be overridden by any
+# authentic info obtained from the root.
+#
+dom=
+  ns=A.ROOT-SERVERS.NET
+  ns=B.ROOT-SERVERS.NET
+  ns=C.ROOT-SERVERS.NET
+  ns=D.ROOT-SERVERS.NET
+  ns=E.ROOT-SERVERS.NET
+  ns=F.ROOT-SERVERS.NET
+  ns=G.ROOT-SERVERS.NET
+  ns=H.ROOT-SERVERS.NET
+  ns=I.ROOT-SERVERS.NET
+  ns=J.ROOT-SERVERS.NET
+  ns=K.ROOT-SERVERS.NET
+  ns=L.ROOT-SERVERS.NET
+  ns=M.ROOT-SERVERS.NET
+
+#
+# because the public demands the name localsource
+#
+ip=127.0.0.1 sys=localhost dom=localhost
+
+# example: adjust to fit your network
+#auth=cirno authdom=9front
+#ipnet=9front ip=192.168.0.0 ipmask=255.255.255.0
+# ipgw=192.168.0.1
+# dns=192.168.0.1
+# auth=cirno
+# dnsdom=9front
+# cpu=cirno
+# smtp=cirno
+#
+#ip=192.168.0.99 sys=cirno dom=cirno.9front ether=112233445566
+
+sys=cirno ether=000c29e16a29</code></pre></div>
+
+<p>Before making the changes, run <code>ndb/query sys &lt;sysname&gt;</code> to get some info about your network. It will output something like</p>
+
+<div><pre><code class="language-none">ip=192.168.1.23 ipmask=255.255.255.0 ipgw=192.168.1.1 sys=cirno dns=192.168.1.1
+sys=cirno ether=000c29e16a29</code></pre></div>
+
+<p>Use this information to edit <code>/lib/ndb/local</code> so it looks similar to</p>
+
+<div><pre><code class="language-none">#
+#  files comprising the data,base, use as many as you like, see ndb(6)
+#
+database=
+  file=/net/ndb
+  file=/lib/ndb/local
+  file=/lib/ndb/common
+
+#
+# entries defining the dns root. these will be overridden by any
+# authentic info obtained from the root.
+#
+dom=
+  ns=A.ROOT-SERVERS.NET
+  ns=B.ROOT-SERVERS.NET
+  ns=C.ROOT-SERVERS.NET
+  ns=D.ROOT-SERVERS.NET
+  ns=E.ROOT-SERVERS.NET
+  ns=F.ROOT-SERVERS.NET
+  ns=G.ROOT-SERVERS.NET
+  ns=H.ROOT-SERVERS.NET
+  ns=I.ROOT-SERVERS.NET
+  ns=J.ROOT-SERVERS.NET
+  ns=K.ROOT-SERVERS.NET
+  ns=L.ROOT-SERVERS.NET
+  ns=M.ROOT-SERVERS.NET
+
+#
+# because the public demands the name localsource
+#
+ip=127.0.0.1 sys=localhost dom=localhost
+
+# example: adjust to fit your network
+auth=cirno authdom=9front
+ipnet=9front ip=192.168.0.0 ipmask=255.255.255.0
+ ipgw=192.168.0.1
+ dns=192.168.0.1
+ auth=cirno
+ dnsdom=9front
+ cpu=cirno
+ fs=cirno
+# smtp=cirno
+#
+#ip=192.168.0.99 sys=cirno dom=cirno.9front ether=112233445566
+
+sys=cirno ether=000c29e16a29</code></pre></div>
+
+<p><strong>Note</strong>: The indentation of the lines under <code>ipnet=9front ip=192.168.0.0 ipmask=255.255.255.0</code> DOES matter.</p>
+
+<p>A more detailed explanation:</p>
+
+<ul>
+<li><code>auth</code> and <code>cpu</code> must be set to the system name.</li>
+<li><code>authdom</code> can be anything, but has to match the <code>authdom</code> we entered at the boot prompt earlier.</li>
+<li><code>ipnet</code> should match <code>authdom</code>.</li>
+<li><code>ipmask</code>, <code>ipgw</code>, and <code>dns</code> should be changed to values from the output of <code>ndb/query sys &lt;sysname&gt;</code>.</li>
+<li>You&#39;ll notice <code>ip</code> does NOT match the output from <code>ndb/query sys &lt;sysname&gt;</code>. In <code>/lib/ndb/local</code>, <code>ip</code> must be set to the subnet ID of the network. This just means the last digit is 0. For example, if the output of <code>ip</code> from <code>ndb/query sys &lt;sysname&gt;</code> was <code>156.43.9.78</code>, <code>ip</code> in <code>/lib/ndb/local</code> should be set to <code>156.43.9.0</code>.</li>
+</ul>
+
+<p>Reboot with <code>fshalt -r</code>.</p>
+
+<p>Run <code>auth/changeuser glenda</code> to get the following</p>
+
+<div><pre><code class="language-none">Password: # type password here, will not echo
+Confirm password: # confirm password here, will not echo
+assign Inferno/POP secret? (y/n) n
+Expiration date (YYYYMMDD or never)[return = never]: 
+2 keys read
+Post id: 
+User’s full name: 
+Department #: 
+User’s email address: 
+Sponsor’s email address: 
+user username installed for Plan 9</code></pre></div>
+
+<p><strong>Note</strong>: Password MUST match what you entered for <code>glenda</code> earlier!</p>
+
+<p>After <code>assign Inferno/POP secret? (y/n) n</code> you can just hit enter for everything else.</p>
+
+<p>If everything is set up correctly, running <code>netaudit</code> should output something like</p>
+
+<div><pre><code class="language-none">checking this host&#39;s tuple:
+  ip=192.168.1.23 looks ok
+  no dom= entry
+  ether=000c29e16a29 looks ok
+checking the network tuple:
+  we are in ipnet=9front
+  ipgw=192.168.1.1 looks ok
+  dns=192.168.1.1 look ok
+  auth=cirno looks ok
+checking auth server configuration:
+  we are the auth server
+  auth/keyfs is running
+  someone is listening on port 567
+  run auth/debug to test the auth server
+  run auth/asaudit to verify auth server configuration</code></pre></div>
+
+<h3 id="toc_5">Post-setup configuration</h3>
+
+<p>You&#39;ll probably want to be able to access websites and have <code>rio</code> running when you connect via <code>drawterm</code>. While you can add whatever you like to your profile, I recommend adding the following to <code>/usr/glenda/lib/profile</code>:</p>
+
+<div><pre><code class="language-none">webfs
+bind -b &#39;#S&#39; /dev
+rio -i riostart</code></pre></div>
+
+<p>Add those right below <code>fn cpu% { $* }</code> and you&#39;ll be able to interact with URLs, mount <code>9fat</code> or other filesystems via <code>9fs</code>, and <code>rio</code> will start automatically on connect.</p>
+
+<h3 id="toc_6">Connecting via <code>drawterm</code></h3>
+
+<p>Download and install <a href="http://drawterm.9front.org">9front&#39;s fork of <code>drawterm</code></a> on the machine you want to connect to the 9front server from. As stated on the website, this version of <code>drawterm</code> is needed to connect to a 9front server due to some security protocol changes. <a href="https://swtch.com/drawterm/">Russ Cox&#39;s version</a> won&#39;t work... that tripped me up initially.</p>
+
+<p>Run <code>drawterm -h &lt;server_ip&gt; -u glenda</code>. A <code>rio</code> window with a prompt should appear. Hit return at the <code>auth</code> prompt, then type the password for <code>glenda</code>. We&#39;re in!</p>
+
+
+
+
+</body>
+
+</html>

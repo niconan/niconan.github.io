@@ -1,0 +1,65 @@
+@font-face {
+	font-family: 'FaktProSoft';
+	src: url('../font/FaktSoftPro-Normal.woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FaktProSoft';
+	src: url('../font/FaktSoftPro-Medium.woff');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FaktProSoft';
+	src: url('../font/FaktSoftPro-Blond.woff');
+	font-weight: italic;
+	font-style: normal;
+}
+
+body {
+	font-family: "FaktProSoft";
+	margin: 0 auto;
+	max-width: 50em;
+	line-height: 1.5;
+	font-size: 1rem;
+	color: #8492A6;
+	padding: 0 1em;
+}
+
+h1 {
+	font-family: "FaktProSoft";
+	color: #3C4858;
+	margin-bottom: 0.62em;
+}
+
+h2 {
+	font-family: "FaktProSoft";
+	color: #3C4858;
+	margin-top: 0.5em;
+	padding-top: 0.5em;
+}
+
+h3 {
+	font-family: "FaktProSoft";
+	color: #3C4858;
+	margin-top: 0.5em;
+	padding-top: 0.5em;
+	margin-bottom: -0.7em;
+}
+	
+
+a {
+	color: #009EEB;
+}
+
+strong {
+	font-family: "FaktProSoft";
+	color: #3C4858;
+}
+
+em {
+	font-family: "FaktProSoft";
+}
