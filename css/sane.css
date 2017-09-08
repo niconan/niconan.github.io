@@ -32,7 +32,6 @@ body {
 h1 {
 	font-family: "FaktProSoft";
 	color: #3C4858;
-	margin-bottom: 0.62em;
 }
 
 h2 {
@@ -49,7 +48,31 @@ h3 {
 	padding-top: 0.5em;
 	margin-bottom: -0.7em;
 }
-	
+
+figure,
+figcaption {
+	display: block;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+code,
+pre {
+	background: #EFF2F7;
+}
+
+code {
+	padding: 2px 4px;
+	vertical-align: text-bottom;
+}
+
+pre {
+	white-space: pre-line;
+	word-wrap: break-word;
+	padding: 1em;
+	border-left: 2px solid #009EEB;
+}
 
 a {
 	color: #009EEB;
@@ -62,4 +85,10 @@ strong {
 
 em {
 	font-family: "FaktProSoft";
+}
+
+#subtitle {
+	display: flex;
+	justify-content: space-between;
+	margin-top: -2.5em;
 }
