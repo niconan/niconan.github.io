@@ -17,7 +17,7 @@
 
 <hr>
 
-<p><em>Based on <code>9front-5966.df2c352ae695</code></em></p>
+<p><em>Based on <code>9front-6165.2a79d5dddf41</code></em></p>
 
 <p>This is a collection of notes on how to complete tasks I&#39;ve found myself commonly performing while using 9front.</p>
 
@@ -141,12 +141,12 @@ ip=127.0.0.1 sys=localhost dom=localhost
 # example: adjust to fit your network
 #auth=cirno authdom=9front
 #ipnet=9front ip=192.168.0.0 ipmask=255.255.255.0
-# ipgw=192.168.0.1
-# dns=192.168.0.1
-# auth=cirno
-# dnsdom=9front
-# cpu=cirno
-# smtp=cirno
+#	ipgw=192.168.0.1
+#	dns=192.168.0.1
+#	auth=cirno
+#	dnsdom=9front
+#	cpu=cirno
+#	smtp=cirno
 #
 #ip=192.168.0.99 sys=cirno dom=cirno.9front ether=112233445566
 
@@ -194,13 +194,13 @@ ip=127.0.0.1 sys=localhost dom=localhost
 # example: adjust to fit your network
 auth=cirno authdom=9front
 ipnet=9front ip=192.168.0.0 ipmask=255.255.255.0
- ipgw=192.168.0.1
- dns=192.168.0.1
- auth=cirno
- dnsdom=9front
- cpu=cirno
- fs=cirno
-# smtp=cirno
+	ipgw=192.168.0.1
+	dns=192.168.0.1
+	auth=cirno
+	dnsdom=9front
+	cpu=cirno
+	fs=cirno
+#	smtp=cirno
 #
 #ip=192.168.0.99 sys=cirno dom=cirno.9front ether=112233445566
 
@@ -219,6 +219,8 @@ sys=cirno ether=000c29e16a29</code></pre></div>
 </ul>
 
 <p>Reboot with <code>fshalt -r</code>.</p>
+
+<p>Start keyfs by running <code>auth/keyfs</code>.
 
 <p>Run <code>auth/changeuser glenda</code> to get the following</p>
 
