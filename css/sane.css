@@ -63,13 +63,12 @@ pre {
 }
 
 code {
+	word-wrap: break-word;
 	padding: 2px 4px;
 	vertical-align: text-bottom;
 }
 
 pre {
-	white-space: pre-line;
-	word-wrap: break-word;
 	padding: 1em;
 	border-left: 2px solid #009EEB;
 }
