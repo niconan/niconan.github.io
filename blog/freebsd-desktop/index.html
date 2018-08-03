@@ -39,7 +39,7 @@
 <h3 id="toc_3">Setting system locale to UTF-8</h3>
 
 <ol>
-<li><p>Edit <code>/etc/rc.conf</code>. One configuration block ends in <code>\:umask=022:</code>. Change that line and add a couple underneath it:</p>
+<li><p>Edit <code>/etc/login.conf</code>. The <code>default</code> configuration block ends in <code>\:umask=022:</code>. Change that line and add a couple underneath it:</p>
 
 <div><pre><code class="language-none">\:umask=022:\
 \:charset=UTF-8:\
