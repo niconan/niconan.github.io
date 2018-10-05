@@ -34,14 +34,14 @@
 % cd /sys/src/9/pc64
 % mk install</code></pre></div>
 
-<p>Now the amd64 kernel has been built. Before copying it to 9bootfat so we can boot from it, do</p>
+<p>Now the amd64 kernel has been built. First, install the new bootloader to the 9fat partition:</p>
 
 <div><pre><code class="language-none">% 9fs 9fat
-% rm /n/9fat/9bootfat
+% rm /n/9fat/9bootfat # Required, cannot copy over existing bootloader
 % cp /386/9bootfat /n/9fat/ # I think bootloader is 386 only, so do this even when installing amd64
 % chmod +al /n/9fat/9bootfat # defrag magic</code></pre></div>
 
-<p>Next, copy the kernel</p>
+<p>Next, copy the kernel:</p>
 
 <div><pre><code class="language-none">% cp /amd64/9pc64 /n/9fat/</code></pre></div>
 
