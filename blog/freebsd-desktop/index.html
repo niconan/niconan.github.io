@@ -13,13 +13,13 @@
 
 <body>
 
-<h1 id="toc_0">FreeBSD + Common Desktop Environment (CDE) installation notes</h1>
+<h1>FreeBSD + Common Desktop Environment (CDE) installation notes</h1>
 
 <hr>
 
 <p><em>Based on FreeBSD 11.1</em></p>
 
-<h2 id="toc_1">Post-base system installation steps</h2>
+<h2>Post-base system installation steps</h2>
 
 <p>All these commands should be run as root.</p>
 
@@ -27,7 +27,7 @@
 
 <p><strong>These notes are my personal preference for a desktop configuration.</strong> If you want to discover more configuration options or read about more complex topics like firewall configuration, refer to the <a href="#toc_13">Further reading</a> section.</p>
 
-<h3 id="toc_2">Updates and X</h3>
+<h3>Updates and X</h3>
 
 <ol>
 <li>Run <code>freebsd-update fetch</code> followed by <code>freebsd-update install</code>.</li>
@@ -36,7 +36,7 @@
 <li>Reboot.</li>
 </ol>
 
-<h3 id="toc_3">Setting system locale to UTF-8</h3>
+<h3>Setting system locale to UTF-8</h3>
 
 <ol>
 <li><p>Edit <code>/etc/login.conf</code>. The <code>default</code> configuration block ends in <code>\:umask=022:</code>. Change that line and add a couple underneath it:</p>
@@ -52,7 +52,7 @@ CHARSET=UTF-8;</code></pre></div>
 <p>This will set the <code>LANG</code> and <code>CHARSET</code> environment variables system-wide. These can be overridden in user-specific <code>profile</code>s.</p></li>
 </ol>
 
-<h3 id="toc_4">Configuration tuning for desktop use</h3>
+<h3>Configuration tuning for desktop use</h3>
 
 <p>FreeBSD is still primarily used as a server operating system. There are some settings we can tweak for better performance given the desktop use-case.</p>
 
@@ -90,7 +90,7 @@ aio_load=&quot;YES&quot;</code></pre></div>
 
 <p>Reboot.</p>
 
-<h2 id="toc_5">nVidia driver configuration</h2>
+<h2>nVidia driver configuration</h2>
 
 <ol>
 <li><code>pkg install x11/nvidia-driver</code> to install the latest driver. Depending on what card you&#39;re using, you may need the <code>x11/nvidia-driver-340</code> or <code>x11/nvidia-driver-304</code> instead. Check <a href="http://www.nvidia.com/Download/index.aspx?lang=en-us">this page</a> to determine which driver is for your card.</li>
@@ -107,13 +107,13 @@ EndSection</code></pre></div></li>
 <li><p>Reboot.</p></li>
 </ol>
 
-<h2 id="toc_6">The Common Desktop Environment</h2>
+<h2>The Common Desktop Environment</h2>
 
 <figure>
   <img src="../../images/blog/freebsd-desktop/cde.png" width="75%">
 </figure>
 
-<h3 id="toc_7">Why CDE?</h3>
+<h3>Why CDE?</h3>
 
 <p>I very much like the aesthetic consistency provided by CDE. The included toolchain makes it feel very complete and professional - there is a specific, consistent way of doing things. For example, the method of adding application launchers is the same every time and done through a tool provided with the environment.</p>
 
@@ -123,7 +123,7 @@ EndSection</code></pre></div></li>
 
 <p>Admittedly, I&#39;ve heard horror stories of folks who had to work with it in the 90s. Maybe I&#39;ve just yet to see its flaws.</p>
 
-<h3 id="toc_8">Pre-installation</h3>
+<h3>Pre-installation</h3>
 
 <p>We need to set a fully-qualified domain name for the system. <strong>Failing to do this properly will prevent CDE from launching!</strong></p>
 
@@ -157,7 +157,7 @@ inetd_enable=&quot;YES&quot;</code></pre></div>
 
 <p>Reboot for good measure.</p>
 
-<h3 id="toc_9">Installation</h3>
+<h3>Installation</h3>
 
 <ol>
 <li><code>git clone git://git.code.sf.net/p/cdesktopenv/code cdesktopenv-code</code> to get the source code. At time of writing the latest release is <code>2.2.4</code>, but the git head has some key fixes in it, including one that makes the CDE login manager work.</li>
@@ -185,7 +185,7 @@ inetd_enable=&quot;YES&quot;</code></pre></div>
 
 <p>Reboot and we should be presented with the CDE login screen.</p>
 
-<h3 id="toc_10">Post-installation</h3>
+<h3>Post-installation</h3>
 
 <p>CDE by default does not use <code>~/.profile</code> or <code>/etc/login.conf</code> - instead it uses <code>~/.dtprofile</code>. At the bottom of this file is the line:</p>
 
@@ -193,9 +193,9 @@ inetd_enable=&quot;YES&quot;</code></pre></div>
 
 <p>I&#39;ve had no issues leaving this uncommented which then makes CDE source <code>~/.profile</code>. This solves the issue of certain FreeBSD binaries not being found, such as <code>pkg</code>.</p>
 
-<h2 id="toc_11">Miscellaneous</h2>
+<h2>Miscellaneous</h2>
 
-<h3 id="toc_12">Converting icons</h3>
+<h3>Converting icons</h3>
 
 <p>CDE uses the <code>.pm</code> file format for bitmap graphics. An easy way to convert existing icons for applications from other formats is to use ImageMagick&#39;s <code>convert</code> command.</p>
 
@@ -205,7 +205,7 @@ inetd_enable=&quot;YES&quot;</code></pre></div>
 
 <p>We can do the same for 32x32 and 16x16 sized icons.</p>
 
-<h2 id="toc_13">Further reading</h2>
+<h2>Further reading</h2>
 
 <p>The aforementioned <a href="https://cooltrainer.org/a-freebsd-desktop-howto/">Allison Reid&#39;s excellent FreeBSD guide</a>. It contains additional configuration steps specific to laptops.</p>
 

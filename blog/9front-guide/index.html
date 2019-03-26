@@ -13,7 +13,7 @@
 
 <body>
 
-<h1 id="toc_0">⑨ 9front guide</h1>
+<h1>⑨ 9front guide</h1>
 
 <hr>
 
@@ -25,7 +25,7 @@
 
 <p>As I&#39;m in the process of learning Plan 9/9front, feel free to contact me with suggestions or corrections.</p>
 
-<h2 id="toc_1">Building &amp; installing amd64 kernel on 9front</h2>
+<h2>Building &amp; installing amd64 kernel on 9front</h2>
 
 <div><pre><code class="language-none">% cd /
 % rc /sys/lib/rootstub
@@ -49,7 +49,7 @@
 
 <p>Reboot.</p>
 
-<h2 id="toc_2">cpu/auth server setup</h2>
+<h2>cpu/auth server setup</h2>
 
 <p>Following these steps sets up a machine with 9front installed as a cpu AND auth server. I don&#39;t cover fileserver configuration since I&#39;ve just been logging in as <code>glenda</code>, but it is covered in <a href="http://fqa.9front.org/fqa7.html#7.3">FQA 7.3</a>.</p>
 
@@ -60,7 +60,7 @@
   <figcaption><em><code>drawterm</code> in X11 on macOS</em></figcaption>
 </figure>
 
-<h3 id="toc_3">Listen for remote connections (cpu server)</h3>
+<h3>Listen for remote connections (cpu server)</h3>
 
 <p>First, add the line <code>service=cpu</code> to <code>/n/9fat/plan9.ini</code>. This defines the <code>service</code> variable during the boot process so the <code>cpu</code> kernel is booted</p>
 
@@ -102,7 +102,7 @@ config: end</code></pre></div>
 
 <p>Reboot with <code>fshalt -r</code>. We&#39;re now listening for connections.</p>
 
-<h3 id="toc_4">Authorize remote connections (auth server)</h3>
+<h3>Authorize remote connections (auth server)</h3>
 
 <p>All we need to do for this is edit the file <code>/lib/ndb/local</code>, but this was a bit tricky for me at first. The contents of this file on a fresh install of <code>9front-5966.df2c352ae695</code> are</p>
 
@@ -258,7 +258,7 @@ checking auth server configuration:
   run auth/debug to test the auth server
   run auth/asaudit to verify auth server configuration</code></pre></div>
 
-<h3 id="toc_5">Post-setup configuration</h3>
+<h3>Post-setup configuration</h3>
 
 <p>You&#39;ll probably want to be able to access websites and have <code>rio</code> running when you connect via <code>drawterm</code>. While you can add whatever you like to your profile, I recommend adding the following to <code>/usr/glenda/lib/profile</code>:</p>
 
@@ -268,13 +268,13 @@ rio -i riostart</code></pre></div>
 
 <p>Add those right below <code>fn cpu% { $* }</code> and you&#39;ll be able to interact with URLs, mount <code>9fat</code> or other filesystems via <code>9fs</code>, and <code>rio</code> will start automatically on connect.</p>
 
-<h3 id="toc_6">Connecting via <code>drawterm</code></h3>
+<h3>Connecting via <code>drawterm</code></h3>
 
 <p>Download and install <a href="http://drawterm.9front.org">9front&#39;s fork of <code>drawterm</code></a> on the machine you want to connect to the 9front server from. As stated on the website, this version of <code>drawterm</code> is needed to connect to a 9front server due to some security protocol changes. <a href="https://swtch.com/drawterm/">Russ Cox&#39;s version</a> won&#39;t work... that tripped me up initially.</p>
 
 <p>Run <code>drawterm -h &lt;server_ip&gt; -u glenda</code>. A <code>rio</code> window with a prompt should appear. Hit return at the <code>auth</code> prompt, then type the password for <code>glenda</code>. We&#39;re in!</p>
 
-<h3 id="toc_7">Maintenance tips</h3>
+<h3>Maintenance tips</h3>
 
 <p><code>cd /sys/src/; mk nuke; mk libs; mk install</code> after running <code>sysupdate</code> to update binaries.</p>
 
