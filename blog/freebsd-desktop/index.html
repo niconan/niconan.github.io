@@ -2,219 +2,219 @@
 <html>
 
 <head>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>FreeBSD + CDE</title>
-
-<link rel="stylesheet" type="text/css" href="../../css/sane.css">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Nicolas S. Montanaro - FreeBSD desktop guide</title>
+    <link rel="stylesheet" type="text/css" href="../../css/txt.css">
 </head>
 
 <body>
+    <div class="container">
+        <div class="content">
+            <pre>
+      @@@@@@@@  @@@@@@@   @@@@@@@@  @@@@@@@@  @@@@@@@    @@@@@@   @@@@@@@
+      @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@   @@@@@@@@
+      @@!       @@!  @@@  @@!       @@!       @@!  @@@  !@@       @@!  @@@
+      !@!       !@!  @!@  !@!       !@!       !@   @!@  !@!       !@!  @!@
+      @!!!:!    @!@!!@!   @!!!:!    @!!!:!    @!@!@!@   !!@@!!    @!@  !@!
+      !!!!!:    !!@!@!    !!!!!:    !!!!!:    !!!@!!!!   !!@!!!   !@!  !!!
+      !!:       !!: :!!   !!:       !!:       !!:  !!!       !:!  !!:  !!!
+      :!:       :!:  !:!  :!:       :!:       :!:  !:!      !:!   :!:  !:!
+       ::       ::   :::   :: ::::   :: ::::   :: ::::  :::: ::    :::: ::
+       :         :   : :  : :: ::   : :: ::   :: : ::   :: : :    :: :  :
 
-<h1>FreeBSD + Common Desktop Environment (CDE) installation notes</h1>
+Based on FreeBSD 11.1
 
-<hr>
+ ____ 
+/_   |     Post-base system installation steps
+ |   |    ______________________________________________________________________
+ |   |
+ |___|
+
+All these commands should be run as root.
 
-<p><em>Based on FreeBSD 11.1</em></p>
+These steps are cherry-picked from <a href="https://cooltrainer.org/a-freebsd-desktop-howto/">Allison Reid&#39;s excellent FreeBSD guide</a>,
+Stackoverflow, and the FreeBSD forums.
 
-<h2>Post-base system installation steps</h2>
+    $ freebsd-update fetch
+    $ freebsd-update install
+    $ pkg install xorg
 
-<p>All these commands should be run as root.</p>
+Reboot.
 
-<p>These steps are cherry-picked from <a href="https://cooltrainer.org/a-freebsd-desktop-howto/">Allison Reid&#39;s excellent FreeBSD guide</a>, Stackoverflow, and the FreeBSD forums.</p>
+Edit /etc/login.conf. The "default" configuration block ends in \:umask=022:
+Change that line and add a couple underneath it:
 
-<p><strong>These notes are my personal preference for a desktop configuration.</strong> If you want to discover more configuration options or read about more complex topics like firewall configuration, refer to the <a href="#toc_13">Further reading</a> section.</p>
+    \:umask=022:\
+    \:charset=UTF-8:\
+    \:lang=en_US.UTF-8:
 
-<h3>Updates and X</h3>
+Edit /etc/profile and add:
 
-<ol>
-<li>Run <code>freebsd-update fetch</code> followed by <code>freebsd-update install</code>.</li>
-<li>If using an nVidia graphics card, follow the steps in the <a href="#toc_5">nVidia section</a>.</li>
-<li><code>pkg install xorg</code> to install Xorg. If asked if you want to enable packages, say yes.</li>
-<li>Reboot.</li>
-</ol>
+    LANG=en_US.UTF-8;
+    CHARSET=UTF-8;
 
-<h3>Setting system locale to UTF-8</h3>
+That sets the LANG and CHARSET environment variables system-wide. These can be
+overridden in user-specific profiles.
 
-<ol>
-<li><p>Edit <code>/etc/login.conf</code>. The <code>default</code> configuration block ends in <code>\:umask=022:</code>. Change that line and add a couple underneath it:</p>
+FreeBSD is still primarily used as a server operating system. There are some
+settings we can tweak for better performance given the desktop use-case.
 
-<div><pre><code class="language-none">\:umask=022:\
-\:charset=UTF-8:\
-\:lang=en_US.UTF-8:</code></pre></div></li>
-<li><p>Edit <code>/etc/profile</code> and add:</p>
+Edit /etc/sysctl.conf and add:
 
-<div><pre><code class="language-none">LANG=en_US.UTF-8;
-CHARSET=UTF-8;</code></pre></div>
+    # Increase shared memory limits for xorg
+    kern.ipc.shmmax=67108864
+    kern.ipc.shmall=32768
 
-<p>This will set the <code>LANG</code> and <code>CHARSET</code> environment variables system-wide. These can be overridden in user-specific <code>profile</code>s.</p></li>
-</ol>
+    # Make UI more responsive under high CPU load
+    # https://www.mail-archive.com/freebsd-stable@freebsd.org/msg112118.html
+    kern.sched.preempt_thresh=224
 
-<h3>Configuration tuning for desktop use</h3>
+Edit /boot/loader.conf and add:
 
-<p>FreeBSD is still primarily used as a server operating system. There are some settings we can tweak for better performance given the desktop use-case.</p>
+    # Shared memory, max process increases
+    kern.ipc.shmseg=1024
+    kern.ipc.shmmni=1024
+    kern.maxproc=100000
 
-<p>Edit <code>/etc/sysctl.conf</code> and add:</p>
+    # Support filesystems in user space
+    fuse_load=&quot;YES&quot;
 
-<div><pre><code class="language-none"># Increase shared memory limits for xorg
-kern.ipc.shmmax=67108864
-kern.ipc.shmall=32768
+    # Thermal sensors for Intel chips
+    # Change to amdtemp_load=&quot;YES&quot; for amd chips
+    coretemp_load=&quot;YES&quot;
 
-# Make UI more responsive under high CPU load
-# https://www.mail-archive.com/freebsd-stable@freebsd.org/msg112118.html
-kern.sched.preempt_thresh=224</code></pre></div>
+    # Enable temporary filesystems
+    # Required by certain applications, but can leave
+    # disabled until explicitly needed
+    tmpfs_load=&quot;YES&quot;
 
-<p>Edit <code>/boot/loader.conf</code> and add:</p>
+    # Asynchronous I/O
+    aio_load=&quot;YES&quot;
 
-<div><pre><code class="language-none"># Shared memory, max process increases
-kern.ipc.shmseg=1024
-kern.ipc.shmmni=1024
-kern.maxproc=100000
+Reboot.
 
-# Support filesystems in user space
-fuse_load=&quot;YES&quot;
+________  
+\_____  \  nVidia driver configuration (optional)
+ /  ____/ ______________________________________________________________________
+/       \ 
+\_______ \
+        \/
 
-# Thermal sensors for Intel chips
-# Change to amdtemp_load=&quot;YES&quot; for amd chips
-coretemp_load=&quot;YES&quot;
+    $ pkg install x11/nvidia-driver
+        * Depending on what card you&#39;re using, you may need the
+          x11/nvidia-driver-340 or x11/nvidia-driver-304 instead. Check
+          <a href="http://www.nvidia.com/Download/index.aspx?lang=en-us">this page</a> to determine which driver is for your card.
+    $ sysrc kld_list=&quot;nvidia&quot;
+        * If you installed driver version 358.009 or newer:
+        $ sysrc kld_list+=&quot;nvidia-modeset&quot;
 
-# Enable temporary filesystems
-# Required by certain applications, but can leave
-# disabled until explicitly needed
-tmpfs_load=&quot;YES&quot;
+Reboot.
 
-# Asynchronous I/O
-aio_load=&quot;YES&quot;</code></pre></div>
+    $ mkdir -p /usr/local/etc/X11/xorg.conf.d
+    $ {nano,vim,ed} /usr/local/etc/X11/xorg.conf.d/driver-nvidia.conf:
 
-<p>Reboot.</p>
+    Section &quot;Device&quot;
+        Identifier &quot;NVIDIA Card&quot;
+        VendorName &quot;NVIDIA Corporation&quot;
+        Driver &quot;nvidia&quot;
+    EndSection
 
-<h2>nVidia driver configuration</h2>
+Reboot.
 
-<ol>
-<li><code>pkg install x11/nvidia-driver</code> to install the latest driver. Depending on what card you&#39;re using, you may need the <code>x11/nvidia-driver-340</code> or <code>x11/nvidia-driver-304</code> instead. Check <a href="http://www.nvidia.com/Download/index.aspx?lang=en-us">this page</a> to determine which driver is for your card.</li>
-<li>If you installed driver version <code>358.009</code> or newer, run <code>sysrc kld_list+=&quot;nvidia-modeset&quot;</code> or add <code>kld_list=&quot;nvidia-modeset</code> to <code>/etc/rc.conf</code> manually. Otherwise, set <code>kld_list=&quot;nvidia&quot;</code>.</li>
-<li>Reboot.</li>
-<li><code>mkdir -p /usr/local/etc/X11/xorg.conf.d</code> to create the <code>xorg.conf.d</code> directory.</li>
-<li><p>Create <code>/usr/local/etc/X11/xorg.conf.d/driver-nvidia.conf</code> with the following contents:</p>
+________  
+\_____  \  The Common Desktop Environment
+  _(__  < ______________________________________________________________________
+ /       \
+/______  /
+       \/ 
 
-<div><pre><code class="language-none">Section &quot;Device&quot;
-    Identifier &quot;NVIDIA Card&quot;
-    VendorName &quot;NVIDIA Corporation&quot;
-    Driver &quot;nvidia&quot;
-EndSection</code></pre></div></li>
-<li><p>Reboot.</p></li>
-</ol>
+We need to set a fully-qualified domain name for the system. Failing to do this
+properly will prevent CDE from launching.
 
-<h2>The Common Desktop Environment</h2>
+    $ hostname -f
+        * Returns something like lain.my.domain
 
-<figure>
-  <img src="../../images/blog/freebsd-desktop/cde.png" width="75%">
-</figure>
+Edit /etc/rc.conf and look for hostname=lain.my.domain. It should
+already be set here. If it is not, set it, making sure it matches the output
+from above.
 
-<h3>Why CDE?</h3>
+Edit the line of /etc/hosts beginning with 127.0.01 to look like:
 
-<p>I very much like the aesthetic consistency provided by CDE. The included toolchain makes it feel very complete and professional - there is a specific, consistent way of doing things. For example, the method of adding application launchers is the same every time and done through a tool provided with the environment.</p>
+    127.0.0.1   lain.my.domain lain localhost localhost.localdomain
 
-<p>CDE imposes an intended way of doing things and interacting with the desktop on the user. This is in very stark contrast to how the majority of other desktop environments on open-source operating systems work. They allow for a great deal of customizability - even GNOME3 allows for a decent amount through the installation of <a href="https://extensions.gnome.org">GNOME Shell Extensions</a>.</p>
+Note that regardless of your hostname, localhost localhost.localdomain will
+always be the same.
 
-<p>My personal preference tends toward sacrificing customizability at the cost of consistency and ease-of-use. CDE&#39;s enterprise UNIX background has led it to feeling very stable and comfortable to use and is now back in active development.</p>
+Next we need to install some required packages:
 
-<p>Admittedly, I&#39;ve heard horror stories of folks who had to work with it in the 90s. Maybe I&#39;ve just yet to see its flaws.</p>
+    $ pkg install xorg git iconv bdftopcf libXp libXScrnSaver ksh93 open-motif
 
-<h3>Pre-installation</h3>
+Edit /etc/rc.conf and add the lines:
 
-<p>We need to set a fully-qualified domain name for the system. <strong>Failing to do this properly will prevent CDE from launching!</strong></p>
+    rpcbind_enable=&quot;YES&quot;
+    inetd_enable=&quot;YES&quot;
 
-<ol>
-<li>Check the current hostname with <code>hostname -f</code>. It will return something like <code>lain.my.domain</code>.</li>
-<li>Edit <code>/etc/rc.conf</code> and look for <code>hostname=lain.my.domain</code>. It should already be set here. If it is not, set it, making sure it matches the output of <code>hostname -f</code>.</li>
-<li><p>Edit the line of <code>/etc/hosts</code> beginning with <code>127.0.01</code> to look like:</p>
+Reboot for good measure.
 
-<div><pre><code class="language-none">127.0.0.1   lain.my.domain lain localhost localhost.localdomain</code></pre></div>
+To install CDE:
 
-<p>Note that regardless of your hostname, the <code>localhost localhost.localdomain</code> will always be the same.</p></li>
-</ol>
+    $ git clone git://git.code.sf.net/p/cdesktopenv/code cdesktopenv-code
+    $ cd cdesktopenv-code/cde
+    $ mkdir -p imports/x11/include
+    $ ln -s /usr/local/include/X11 imports/x11/include
+    $ ln -s /usr/local/include/Xm imports/x11/include
+    $ ln -s /usr/local/include/fontconfig imports/x11/include
+    $ ln -s /usr/local/include/freetype2 imports/x11/include
+    $ make World
+    $ cd cdesktopenv-code/cde/admin/IntegTools/dbTools
+    $ ./installCDE -s ../../../../cde
 
-<p>Next we need to install some required packages - use <code>pkg install</code> for these:</p>
+Enable ToolTalk, CDE&#39;s inter-process messaging service:
 
-<ul>
-<li><code>xorg</code> - should have been installed in previous steps</li>
-<li><code>git</code></li>
-<li><code>iconv</code></li>
-<li><code>bdftopcf</code> (may be installed already)</li>
-<li><code>libXp</code> (may be installed already)</li>
-<li><code>libXScrnSaver</code> (may be installed already)</li>
-<li><code>ksh93</code></li>
-<li><code>open-motif</code></li>
-</ul>
+    $ mkdir -p /etc/tt
+    $ cp cdesktopenv-code/cde/programs/tttypes/types.xdr /etc/tt
 
-<p>Edit <code>/etc/rc.conf</code> and add the lines:</p>
+Finally, create /etc/rc.local with the content:
 
-<div><pre><code class="language-none">rpcbind_enable=&quot;YES&quot;
-inetd_enable=&quot;YES&quot;</code></pre></div>
+    /usr/dt/bin/dtlogin
 
-<p>Reboot for good measure.</p>
+That enables CDE's display manager. Reboot.
 
-<h3>Installation</h3>
+By default, CDE does not source ~/.profile or /etc/login.conf - instead it uses
+~/.dtprofile. Uncomment this line in .dtprofile:
 
-<ol>
-<li><code>git clone git://git.code.sf.net/p/cdesktopenv/code cdesktopenv-code</code> to get the source code. At time of writing the latest release is <code>2.2.4</code>, but the git head has some key fixes in it, including one that makes the CDE login manager work.</li>
-<li><code>cd cdesktopenv-code/cde</code></li>
-<li><code>mkdir -p imports/x11/include</code></li>
-<li><code>ln -s /usr/local/include/X11 imports/x11/include</code></li>
-<li><code>ln -s /usr/local/include/Xm imports/x11/include</code></li>
-<li><code>ln -s /usr/local/include/fontconfig imports/x11/include</code></li>
-<li><code>ln -s /usr/local/include/freetype2 imports/x11/include</code></li>
-<li><code>make World</code> and pray.</li>
-<li><code>cd cdesktopenv-code/cde/admin/IntegTools/dbTools</code></li>
-<li><code>./installCDE -s ../../../../cde</code></li>
-</ol>
+    # DTSOURCEPROFILE=true
 
-<p>We can enable ToolTalk, CDE&#39;s inter-process messaging service, pretty easily. I believe ToolTalk is required for certain CDE applications, so we might as well enable it:</p>
+This solves the issue of some programs not being found.
 
-<ol>
-<li><code>mkdir -p /etc/tt</code></li>
-<li><code>cp cdesktopenv-code/cde/programs/tttypes/types.xdr /etc/tt</code></li>
-</ol>
+   _____  
+  /  |  |   Miscellaneous
+ /   |  |_ _____________________________________________________________________
+/    ^   /
+\____   | 
+     |__| 
 
-<p>Finally, create <code>/etc/rc.local</code> with the content:</p>
+CDE uses the .pm file format for bitmap graphics. An easy way to convert
+existing icons for applications from other formats is to use ImageMagick&#39;s
+convert command:
 
-<div><pre><code class="language-none">/usr/dt/bin/dtlogin</code></pre></div>
+    $ convert file.png icon.xpm
+    $ convert icon.xpm -resize 48x48 icon.pm
 
-<p>Reboot and we should be presented with the CDE login screen.</p>
-
-<h3>Post-installation</h3>
-
-<p>CDE by default does not use <code>~/.profile</code> or <code>/etc/login.conf</code> - instead it uses <code>~/.dtprofile</code>. At the bottom of this file is the line:</p>
-
-<p><code># DTSOURCEPROFILE=true</code></p>
-
-<p>I&#39;ve had no issues leaving this uncommented which then makes CDE source <code>~/.profile</code>. This solves the issue of certain FreeBSD binaries not being found, such as <code>pkg</code>.</p>
-
-<h2>Miscellaneous</h2>
-
-<h3>Converting icons</h3>
-
-<p>CDE uses the <code>.pm</code> file format for bitmap graphics. An easy way to convert existing icons for applications from other formats is to use ImageMagick&#39;s <code>convert</code> command.</p>
-
-<p><code>$ convert file.png icon.xpm</code></p>
-
-<p><code>$ convert icon.xpm -resize 48x48 icon.pm</code></p>
-
-<p>We can do the same for 32x32 and 16x16 sized icons.</p>
-
-<h2>Further reading</h2>
-
-<p>The aforementioned <a href="https://cooltrainer.org/a-freebsd-desktop-howto/">Allison Reid&#39;s excellent FreeBSD guide</a>. It contains additional configuration steps specific to laptops.</p>
-
-<p>FreeBSD uses OpenBSD&#39;s <code>pf</code> firewall. It is incredibly powerful and not too complex but is beyond the scope of these notes. See <a href="https://www.openbsd.org/faq/pf/">OpenBSD&#39;s documentation</a> on <code>pf</code>, or <a href="https://www.nostarch.com/pf3">a book on the subject</a>.</p>
-
-<p>The <code>tuning</code> <a href="http://nixdoc.net/man-pages/FreeBSD/tuning.7.html">manpage</a> on FreeBSD.</p>
-
-<p>The <a href="https://wiki.freebsd.org/SystemTuning">SystemTuning wiki page</a>. It is &quot;initially just the current tuning(7) manpage with some annotations&quot; but does have some additional info and explanations.</p>
-
+For further reading:
+    * The aforementioned <a href="https://cooltrainer.org/a-freebsd-desktop-howto/">Allison Reid&#39;s excellent FreeBSD guide</a>. It contains
+      additional configuration steps specific to laptops.
+    * FreeBSD uses OpenBSD&#39;s pf firewall. It is incredibly powerful and not
+      too complex but is beyond the scope of these notes. See OpenBSD&#39;s
+      <a href="https://www.openbsd.org/faq/pf/">documentation</a> on <code>pf</code>, or <a href="https://www.nostarch.com/pf3">a book on the subject</a>.
+    * The tuning <a href="http://nixdoc.net/man-pages/FreeBSD/tuning.7.html">manpage</a> on FreeBSD.
+    * The <a href="https://wiki.freebsd.org/SystemTuning">SystemTuning wiki page</a>. It is &quot;initially just the current tuning(7)
+      manpage with some annotations&quot; but does have some additional info and
+      explanations.
+            </pre>
+        </div>
+    </div>
 </body>
 
 </html>
