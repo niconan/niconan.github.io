@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Nicolas S. Montanaro - PC98 MiSTER FPGA Notes</title>
+    <link rel="stylesheet" type="text/css" href="../../css/txt.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <pre>
+===== CORE SETUP =====
+
+* I used Mr. Fusion for my SD setup: https://github.com/MiSTer-devel/mr-fusion
+    * The root of the SD card contains a _Computer folder. This is where the
+    .rbf file for the PC98 core (Zet98) goes.
+
+* The core's author, puu, posts updates to the core on his blog:
+http://fpga8801.seesaa.net/ * The cores are posted here as Quartus II .qar
+archives. They can be extracted by using https://github.com/makigumo/unqar *
+tontonkaloun has also been posting zip versions for download. As of writing, the
+latest one is attached to this post:
+https://misterfpga.org/viewtopic.php?f=36&t=167&p=18662#p18662
+
+===== BIOS =====
+
+* If you just want to get going with the core, download tonton.rar attached to
+this post: https://misterfpga.org/viewtopic.php?p=18850#p18850
+    * Inside is a script named mkrom.sh and a file named Zet98.rom. Ignore the
+    script. Rename Zet98.rom to boot.rom. Place into YOUR_SD/games/Zet98.
+    Alternatively, place into YOUR_SD/bootrom/Zet98.rom. * The core should boot
+    to a black screen. OSD should work via F12. You know it's working if you
+    hear some beeps.
+	
+Detailed info on the BIOS:
+
+* In puu's post for the first release of the core
+(http://fpga8801.seesaa.net/archives/20210107-1.html) he mentions that the core
+requires a boot.rom file, which is a catenation of the BIOS, ITF (unsure what
+this is), and fonts. These files refer to bios.rom, itf.rom, and font.rom files
+which are typically found in PC98 BIOS dumps I've found. Specifically, those are
+the files present in the Neo Kobe PC98 archive's BIOS files.
+* There has been some discussion on what model PC98 BIOS is required. See:
+https://misterfpga.org/viewtopic.php?p=15766#p15766
+    * From what I can tell, none of the BIOS included in the Neo Kobe archive are
+    appropriate. I tried making the BIOS myself as per the mkrom.sh file with a
+    few different models, but to no avail. Whatever BIOS tontonkaloun used to 
+    make his Zet98.rom works. I didn't see any mention of specifically what
+    model that file was generated from.
+
+For reference, my Neo Kobe archive contains BIOS for the following models:
+
+Epson PC-486HX
+Epson PC-486MU
+NEC PC-9801 (unknown model)
+NEC PC-9801-86 Sound Board
+NEC PC-9801UX NEC PC-9821 (unknown model)
+NEC PC-9821Ce2
+NEC PC-9821V13 NEC
+PC-9821V20 YM2608 (OPNA) rhythm samples
+
+===== CONVERTING GAMES =====
+
+According to https://46okumen.com/pachy98/, there's a LOT of disk formats PC98
+games can be found in. The only format I care about is .hdm, the format the ROMs
+in the Neo Kobe archive are distributed in.
+
+* We need to go from HDM to D88 for this core. Let's take Albion - Domino
+Soldier from the Neo Kobe archive as an example. The files are:
+
+Albion - Domino Soldier [FD].zip
+    * Albion - Domino Soldier (Disk A).hdm
+    * Albion - Domino Soldier (Disk B).hdm
+	
+* The [FD] means Floppy Disk. Some games also have an [HD] archive, for Hard
+Drive. From reading the thread, it seems people have only had success running
+the floppy disk versions of games.
+    * wark91 seems to confirm only floppy versions work at the moment:
+    https://misterfpga.org/viewtopic.php?f=36&t=167&p=19139&hilit=hdf#p19139
+	
+* To convert the HDM files to D88, I used an ancient piece of software called
+Virtual Floppy Image Converter running in a Win2K virtual machine:
+https://www.vector.co.jp/download/file/win95/util/fh212773.html
+    * Open it. Check "EXPORT FOLDER" and provide a path to export the D88 file
+    to. set "FORMAT" to "D88 format". Drag the HDM file in the box that says
+    "Drag & Drop File(s) Here to Convert"
+    * Copy the Albion - Domino Soldier (Disk A).d88 and Albion - Domino Soldier 
+    (Disk B).d88 files to YOUR_SD/games/Zet98 or wherever.
+
+A couple side notes:
+
+    * Relying on VFIC seems prone to breaking in the future. Someone rewrote a
+    couple conversion tools in Python:
+    https://github.com/barbeque/pc98-disk-tools
+        * We can't go directly from HDM to D88 using these tools. However, going
+         from HDM to FDI then using pgimeno's FDI to D88 script
+         (http://www.formauri.es/personal/pgimeno/misc/converters.php) might
+         work. I haven't tried it. It would be great to have a direct converter
+        independent of VFIC.
+
+===== RUNNING GAMES =====
+
+* Boot to the Zet98 core. As mentioned above, if it successfully boots, you'll
+get a black screen but hear a few beeps. If you wait long enough DOS(?) will
+load, but you don't need to wait.
+* Hit F12, go to FDD 0 *.D88 and load Disk A of Albion. Do the same for FDD1 and
+Disk B.
+* Hit Reset.
+* Wait for a while, it takes a moment to boot. Some text from DOS will show up
+after a while and continue booting the game.
+
+===== TROUBLESHOOTING =====
+
+* Some games (Rusty) will display a message telling you to flip DIP switch 2-8
+to 2.5MHz in order to run. In that case, hit F12 and scroll to the bottom to
+toggle it. Additionally, some games will look visually messed up
+(duplicated/misaligned image) but WILL NOT provide the warning Rusty does. The
+fix is the same: switch to 2.5MHz.
+* In general, having the DIP switches set to what puu recommends is probably a
+good idea:
+https://misterfpga.org/viewtopic.php?f=36&t=167&p=16251&hilit=DIP1#p16251
+
+DIP1-8 Extend
+DIP1-3 Normal
+DIP2-1 1
+DIP2-2 Basic
+DIP2-3 80
+DIP2-4 25
+DIP2-5 Keep
+DIP2-6 Connect
+DIP2-7 Control
+DIP2-8 2.5MHz
+
+===== OTHER NOTES =====
+
+* On my PVM (supports up to 1080i), I'm unable to get a good image unless
+vga_scaler is set to 1. I don't know why this is, as supposedly the PC98 runs at
+640x400. Without this on, some games display only a dark green color, and in
+general the brightness seems to be screwed up. With the VGA scaler on they look
+fine... unfortunately, without scanlines!
+            </pre>
+        </div>
+    </div>
+</body>
+
+</html>
