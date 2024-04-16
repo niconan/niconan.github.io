@@ -11,6 +11,7 @@
 %-----------------------------------------------------------
 \usepackage[empty]{fullpage}
 \usepackage{color}
+\usepackage{hyperref}
 \definecolor{mygrey}{gray}{0.80}
 \raggedbottom
 \raggedright
@@ -38,59 +39,61 @@
 \begin{document}
 
 \begin{tabular*}{7.5in}{l@{\extracolsep{\fill}}r}
-\textbf{\large Nicolas S. Montanaro}  & 203.505.0205 (cell)\\
-39-74 44th St Flr 2 &  mail@nicolasmontanaro.com \\
-Sunnyside, NY 11104& nicolasmontanaro.com\\
+\textbf{\large Nicolas S. Montanaro}  & (203) 505-0205 \\
+39-74 44th St Flr 2 &  \href{mailto:mail@nicolasmontanaro.com}{mail@nicolasmontanaro.com} \\
+Sunnyside, NY 11104& \href{https://nicolasmontanaro.com}{nicolasmontanaro.com}\\
 \end{tabular*}
 \\
 
 \vspace{0.1in}
 
-\resheading{Work Experience}
+\resheading{Work experience}
 \begin{itemize}
-\item
-	\ressubheading{Foyer, Inc.}{Trumbull, CT}{Technology Director}{May 2017 - Present}
+	\item
+	\ressubheading{Sonara Health}{Remote}{Senior software engineer}{June 2022 - present}
 	\begin{itemize}
-		\resitem{Responsible for overall direction and technical implementations for The Foyer AI platform. This includes design, development, testing, and release engineering for a number of products.}
-		\resitem{Developed and currently maintain the backend for the company's real estate metadata API.}
-		\resitem{Designed and programmed an iOS application for real estate listing creation and automatic feature detection. Feature extraction is performed in real-time as a video of the home is taken.}
+		\resitem{Designed and implemented a relational database structure to accurately record and analyze user activity history.}
+		\resitem{Planned and executed a framework for collecting patient demographic information.}
+		\resitem{Bridged our web application to Zendesk in an effort to shift operational burden from opioid treatment centers to our internal customer success team.}
+		\resitem{Collaborated with team to rapidly patch a critical production bug, minimizing service outage impact.}
+		\resitem{Developed a custom measurement-based care framework, combining UI components, database designs, and data collection standards, enabling the collection of voluntary patient information aligned with Sonara's specific requirements as an alternative to off-the-shelf solutions.}
+	\end{itemize}
+\item
+	\ressubheading{Foyer, Inc. (defunct)} {Trumbull, CT}{Technology director}{May 2017 - June 2022}
+	\begin{itemize}
+		\resitem{Assumed responsibility for overall direction and technical implementation for the Foyer ML platform as the company grew from 2 employees to 8.}
+		\resitem{Planned, designed, implemented and maintained a datastore and REST API for real estate metadata.}
+		\resitem{Designed and programmed an iOS application for real estate listing creation and automatic feature detection. Feature extraction was performed in real-time as a video of a home was taken.}
 	\end{itemize}
 \item 
 	\ressubheading{Recurse Center}{New York, NY}{Participant}{February 2018 - May 2018}
 	\begin{itemize}
-		\resitem{The Recurse Center runs free, self-directed, project based programming retreats for anyone who wants to get dramatically better at programming.}
-		\resitem{Created a Game Boy emulator in Go and gave a presentation on the implementation details.}
-	\end{itemize}
-\item
-	\ressubheading{mySpiderWeb}{Rochester, NY (remote)}{Full Stack Developer}{May 2016 - September 2016}
-	\begin{itemize}
-		\resitem{mySpiderweb was a social media publishing tool that streamlines a multi-network presence for small businesses.}
-		\resitem{Developed the application from scratch for use with Facebook, LinkedIn, and Twitter integration. The stack included Meteor JS, HTML, CSS, JavaScript, and MongoDB.}
+		\resitem{Participated in a self-directed, project-based programming retreat, where I created a Game Boy emulator in Go and delivered a presentation on the implementation details.}
 	\end{itemize}
 \item 
-	\ressubheading{Intel}{Santa Clara, CA}{Software Application Engineer}{January 2015 - December 2015}
+	\ressubheading{Intel}{Santa Clara, CA}{Software application engineer}{January 2015 - December 2015}
 	\begin{itemize}
 		\resitem{Analyzed the performance of 3D camera hardware and software on Intel architecture prior to release.}
 		\resitem{Developed and tested mobile performance analysis tools for Android, iOS, and Windows-based tablets for Intel lab
 		personnel.}
-		\resitem{Identified and resolved proprietary software issues which resulted in the on-time delivery of a performance
+		\resitem{Received an award for the identification and resolution of proprietary software issues which resulted in the on-time delivery of a performance
 		monitoring tool to Intel labs.}
 	\end{itemize}
 \end{itemize}
 
-\resheading{Open Source Projects}
+\resheading{Open source projects}
 
 \begin{itemize}
 \item 
-	\ressubheading{Halken}{}{Go}{github.com/99z/halken}
+	\ressubheading{Halken}{}{Go}{\href{https://github.com/99z/halken}{github.com/99z/halken}}
 	\begin{itemize}
 		\resitem{Halken is a Game Boy emulator written in Go.}
 		\resitem{Created as an exercise in low-level programming and to gain a better understanding of computer architecture while at the Recurse Center.}
 	\end{itemize}
 \item 
-	\ressubheading{Independent study in code clone detection techniques}{}{Java}{nicolasmontanaro.com/indstudy.pdf}
+	\ressubheading{Independent study in code clone detection techniques}{}{Java}{\href{https://nicolasmontanaro.com/indstudy.pdf}{nicolasmontanaro.com/indstudy.pdf}}
 	\begin{itemize}
-		\resitem{Implemented a naive version of GPLAG.}
+		\resitem{Implemented a simplified version of the GPLAG algorithm for code clone detection.}
 		\resitem{Compared GPLAG against widely-used tools for plagiarism detection in student code submissions.}
 		\resitem{Benchmarked and analyzed tokenization vs. subgraph isomorphism detection techniques for code clone detection.}
 	\end{itemize}
